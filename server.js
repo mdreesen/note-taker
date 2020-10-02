@@ -8,11 +8,29 @@ const fs = require('fs');
 const PORT = process.env.PORT || 3001;
 // have to initialize express
 const app = express();
+// sets up express to handle data parsing
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+// import data from the db.json file
+const { notes } = require('./db/db.json');
 
 // can write the GET call here
-// app.get('/notes', (req, res) => {
+// returns index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './index.html'));
+});
+// returns notes.html
+app.get('/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, './notes.html'));
+});
 
-// })
+// This is GETTING the notes data
+app.get('/api/notes', (req, res) => {
+    // res.send('hello')
+    res.json(notes)
+});
 // can write the POST call here
 
 // Port number
