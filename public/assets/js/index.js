@@ -60,7 +60,7 @@ var handleNoteSave = function() {
         getAndRenderNotes();
         renderActiveNote();
     });
-    const noteObject = { title, text };
+    const noteObject = { title };
 
     fetch('api/notes', {
             method: 'POST',
