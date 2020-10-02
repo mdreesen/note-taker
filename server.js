@@ -8,6 +8,8 @@ const fs = require('fs');
 const PORT = process.env.PORT || 3001;
 // have to initialize express
 const app = express();
+// using the public code
+app.use(express.static('public'));
 // sets up express to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -19,11 +21,11 @@ const { notes } = require('./db/db.json');
 // can write the GET call here
 // returns index.html
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, './index.html'));
+    res.sendFile(path.join(__dirname, './public/index.html'));
 });
 // returns notes.html
 app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, './notes.html'));
+    res.sendFile(path.join(__dirname, './public/notes.html'));
 });
 
 // This is GETTING the notes data
