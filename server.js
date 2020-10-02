@@ -18,6 +18,12 @@ app.use(express.json());
 // import data from the db.json file
 const { notes } = require('./db/db.json');
 
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+// create a new note
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+
 // can write the GET call here
 // returns index.html
 app.get('/', (req, res) => {
@@ -34,6 +40,12 @@ app.get('/api/notes', (req, res) => {
     res.json(notes)
 });
 // can write the POST call here
+app.post('/api/notes', (req, res) => {
+    console.log(req.body);
+    //set id based on what the next index of the array will be
+    req.body.id = notes.length.toString();
+    res.json(req.body);
+})
 
 // Port number
 app.listen(PORT, () => {
