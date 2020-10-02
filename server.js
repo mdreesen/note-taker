@@ -8,6 +8,7 @@ const fs = require('fs');
 const PORT = process.env.PORT || 3001;
 // have to initialize express
 const app = express();
+
 // calling the files that are in the in public folder
 app.use(express.static('public'));
 // sets up express to handle data parsing, urlencoded is making it key and value pairs
@@ -22,6 +23,7 @@ const { notes } = require('./db/db.json');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // -=- FUNCTIONS -=-
+
 
 // filter through the query
 function filterData(query, notesArray) {
@@ -125,6 +127,7 @@ app.post('/api/notes', (req, res) => {
 app.delete('/notes:id', (req, res) => {
     console.log(req.params.id)
 });
+
 
 // Port number
 app.listen(PORT, () => {
