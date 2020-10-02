@@ -8,11 +8,13 @@ const fs = require('fs');
 const PORT = process.env.PORT || 3001;
 // have to initialize express
 const app = express();
-// using the public code
+// calling the files that are in the in public folder
 app.use(express.static('public'));
 // sets up express to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+// have to require the index files
+
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 // import data from the db.json file
@@ -20,7 +22,8 @@ const { notes } = require('./db/db.json');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-// create a new note
+// creating a new note
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -42,8 +45,6 @@ app.get('/api/notes', (req, res) => {
 // can write the POST call here
 app.post('/api/notes', (req, res) => {
     console.log(req.body);
-    //set id based on what the next index of the array will be
-    req.body.id = notes.length.toString();
     res.json(req.body);
 })
 
