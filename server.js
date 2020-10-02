@@ -22,13 +22,34 @@ const { notes } = require('./db/db.json');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
+// filter through the query
+function filterData(query, notesArray) {
+    let filteredResults = notesArray;
+    if (query.id) {
+        filteredResults = filteredResults.filter(note => notes.id === query.id);
+    }
+    if (query.title) {
+        filteredResults = filteredResults.filter(note => note.title === query.title);
+    }
+    return filteredResults;
+};
 // creating a new note
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 // can write the GET call here
-// returns index.html
+// accessing the note data
+app.get('/api/data', (req, res) => {
+        let results = notes;
+        console.log(req.query);
+        // this is for the query data, if a user wants to find their notes
+        if (req.query) {
+            results = filterData(req.query, results);
+        }
+        res.json(results);
+    })
+    // returns index.html
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
 });
