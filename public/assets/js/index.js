@@ -62,7 +62,7 @@ var handleNoteSave = function() {
     });
     const noteObject = { title, text };
 
-    fetch(queryUrl, {
+    fetch('api/notes', {
             method: 'POST',
             headers: {
                 accept: 'application/json',
