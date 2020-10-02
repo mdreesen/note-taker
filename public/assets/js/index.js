@@ -1,5 +1,3 @@
-const path = require('path');
-
 var $noteTitle = $(".note-title");
 var $noteText = $(".note-textarea");
 var $saveNoteBtn = $(".save-note");
@@ -143,17 +141,3 @@ $noteText.on("keyup", handleRenderSaveBtn);
 
 // Gets and renders the initial list of notes
 getAndRenderNotes();
-
-module.exports = {
-    getNotes,
-    saveNote,
-    deleteNote,
-    renderActiveNote,
-    handleNoteSave,
-    handleNoteDelete,
-    handleNoteView,
-    handleNewNoteView,
-    handleRenderSaveBtn,
-    renderNoteList,
-    getAndRenderNotes
-}
