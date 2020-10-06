@@ -122,14 +122,26 @@ app.post('/api/notes', (req, res) => {
         res.json(req.body);
 
     }
-})
+});
 
-app.delete('/notes:id', (req, res) => {
-    console.log(req.params.id)
+app.delete('/api/notes/:id', (req, res) => {
+    const deleteId = req.params.id
+
+    const noteIndex = notes.findIndex((note) => {
+        return note.id === deleteId
+    })
+
+    notes.splice(noteIndex, 1)
+
+    fs.writeFileSync(
+        path.join(__dirname, './db/db.json'),
+        JSON.stringify({ notes }, null, 2)
+    );
+    res.json(deleteId)
 });
 
 
 // Port number
 app.listen(PORT, () => {
-    console.log(`Serving on port ${PORT}`);
+    console.log(`Serving on localhost:${PORT}`);
 });
